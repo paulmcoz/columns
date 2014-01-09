@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<title>Columns Demo</title>
+<script type="text/javascript" src="http://dd44f57b5723b6dfc74f-0002c2fe28716b9cc41fc1317f67b21a.r34.cf1.rackcdn.com/jquery.min.js"></script>
+
+<style>
+html{padding:0px;margin:0px;}
+body{font-family:Arial, Helvetica, sans-serif;font-size:62.5%;line-height:1.6em;margin:0px;padding:0px;color:#000000;font-weight:normal;background:#ffffff;}
+img{display:block;margin:0px;border:none;}
+.standardimg{height:100%;border:none;}
+.imgdiv{width:24.725%;height:100%;max-height:538px;float:left;overflow:hidden;}
+#maindiv{width:100%;margin-left:0.55%;overflow:hidden;}
+</style>
+
+</head>
+
+<script>
+$(document).ready(function(){
+	var time = 1000;
+	
+	/*0.4488095238095238*/
+	/*0.5511904761904762/3 = 0.1837301587301587*/
+	/*.989*/
+	var defaultImageWidth = "24.725%";	
+	var activeImageWidth = 44.88095238095238;
+	var backgroundImageWidth = 18.37301587301587;
+	var backgroundImageWidth = backgroundImageWidth * .98;
+	var activeImageWidth = activeImageWidth + "%";
+	var backgroundImageWidth = backgroundImageWidth + "%";	
+		
+	function windowResize() {
+	  var totalWidth = $("#maindiv").width();
+		var divHeight = totalWidth * 0.3202380952380952  + "px";
+		$("#maindiv").css("height",divHeight);
+	}
+	
+	windowResize();
+	
+	window.onresize = function(){	  
+    	windowResize();
+	};
+	  
+		
+  $("#imagediv1").mouseenter(function(){	  	
+	$("#imagediv2").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv3").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv4").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv1").stop().animate({width:activeImageWidth},time);
+  });
+  
+  $("#imagediv1").mouseleave(function(){ 
+	resizeToStandard();
+  });
+  
+  $("#imagediv2").mouseenter(function(){		
+	$("#imagediv1").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv3").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv4").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv2").stop().animate({width:activeImageWidth},time);
+  });
+  
+  $("#imagediv2").mouseleave(function(){ 
+	resizeToStandard();
+  });
+  
+  $("#imagediv3").mouseenter(function(){		
+	$("#imagediv1").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv2").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv4").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv3").stop().animate({width:activeImageWidth},time);
+  });
+  
+  $("#imagediv3").mouseleave(function(){ 
+	resizeToStandard();
+  });
+  
+  $("#imagediv4").mouseenter(function(){
+	
+	$("#imagediv1").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv2").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv3").stop().animate({width:backgroundImageWidth},time);
+	$("#imagediv4").stop().animate({width:activeImageWidth},time);
+  });
+  
+  $("#imagediv4").mouseleave(function(){ 
+	resizeToStandard();
+  });  
+  
+  $("#maindiv").mouseleave(function(){	  
+    	resizeToStandard();
+  });
+  
+  function resizeToStandard() {
+	$("#imagediv1").stop().animate({width:defaultImageWidth},time);
+	$("#imagediv2").stop().animate({width:defaultImageWidth},time);
+	$("#imagediv3").stop().animate({width:defaultImageWidth},time);
+	$("#imagediv4").stop().animate({width:defaultImageWidth},time); 
+  }   
+});
+</script>
+
+<body>	
+	<div id="maindiv">    	
+      <div id="imagediv1" class="imgdiv">
+        <img id="image1" class="standardimg" src="img/a.jpg">
+      </div>
+      <div id="imagediv2" class="imgdiv">
+        <img id="image2" class="standardimg" src="img/b.jpg">
+      </div>
+      <div id="imagediv3" class="imgdiv">
+        <img id="image3" class="standardimg" src="img/c.jpg">
+      </div>
+      <div id="imagediv4" class="imgdiv">
+        <img id="image4" class="standardimg" src="img/d.jpg">
+      </div>   
+    </div>
+</body>
+</html>
